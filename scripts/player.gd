@@ -2,6 +2,7 @@ class_name Player extends Actor
 
 @onready var tilemap: TileMapLayer = get_node(NodePath("../WorldTileLayer"))
 @onready var fog: TileMapLayer = get_node(NodePath("../FogTileLayer"))
+@onready var inv_ui = get_node(NodePath("UICanvasLayer/InventoryUI"))
 @onready var light = $PointLight2D
 var pathing_speed = 300.0
 var astar = AStarGrid2D.new()
@@ -15,7 +16,11 @@ var exp_to_next_level = 50
 var held_keys := {}
 
 func _ready():
+	GameInfo.load_into_player(self)
 	TurnManager.register_actor(self, true)
+	InventoryManager.set_player(self)
+	z_index = 1
+	inv_ui.hide()
 	_setup_astar()
 	
 func _setup_astar():
@@ -42,6 +47,8 @@ func _unhandled_input(event):
 		return
 	# move via mouse click
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if inv_ui.visible:
+			return
 		var target_tile = tilemap.local_to_map(tilemap.to_local(get_global_mouse_position()))
 		move_to_tile(target_tile)
 		return
@@ -53,7 +60,7 @@ func _unhandled_input(event):
 			if not moving:
 				_handle_key_move(held_keys)
 			held_keys.erase(event.keycode)
-	
+	# pass turn with space
 	if event is InputEventKey and event.keycode in [KEY_SPACE]:
 		if event.pressed:
 			held_keys[event.keycode] = true
@@ -61,13 +68,43 @@ func _unhandled_input(event):
 			if not moving:
 				pass_turn()
 			held_keys.erase(event.keycode)
-	
+	# rest until healed with R
 	if event is InputEventKey and event.keycode in [KEY_R]:
 		if event.pressed:
 			held_keys[event.keycode] = true
 		else:
 			if not moving:
 				resting = true
+			held_keys.erase(event.keycode)
+	# open inventory screen with I
+	if event is InputEventKey and event.keycode in [KEY_I]:
+		if event.pressed:
+			held_keys[event.keycode] = true
+		else:
+			if not moving:
+				inv_ui.visible = !inv_ui.visible
+			held_keys.erase(event.keycode)
+	if event is InputEventKey and event.keycode in [KEY_Z]:
+		if event.pressed:
+			held_keys[event.keycode] = true
+		else:
+			if not moving:
+				attempt_warp()
+			held_keys.erase(event.keycode)
+	if event is InputEventKey and event.keycode in [KEY_X]:
+		if event.pressed:
+			held_keys[event.keycode] = true
+		else:
+			if not moving:
+				attempt_item_pickup()
+			held_keys.erase(event.keycode)
+	if event is InputEventKey and event.keycode in [KEY_ESCAPE]:
+		if event.pressed:
+			held_keys[event.keycode] = true
+		else:
+			if not moving:
+				if inv_ui.visible:
+					inv_ui.hide()
 			held_keys.erase(event.keycode)
 
 func _handle_key_move(keys: Dictionary):
@@ -196,6 +233,22 @@ func get_path_avoiding_actors(from_tile: Vector2i, to_tile: Vector2i, ignore_act
 	
 	return path
 
+func attempt_warp() -> void:
+	var player_tile = tilemap.local_to_map(tilemap.to_local(global_position))
+	for warp in get_tree().get_nodes_in_group("warps"):
+		var warp_tile = tilemap.local_to_map(tilemap.to_local(warp.global_position))
+		if warp_tile == player_tile:
+			Maps.request_warp(warp.dest_map, warp.dest_pos)
+			return
+			
+func attempt_item_pickup() -> void:
+	var player_tile = tilemap.local_to_map(tilemap.to_local(global_position))
+	for item in get_tree().get_nodes_in_group("items"):
+		var item_tile = tilemap.local_to_map(tilemap.to_local(item.global_position))
+		if item_tile == player_tile:
+			item.pickup()
+			return
+
 func _physics_process(delta) -> void:
 	# update damage based on stats/gear; placeholder for now
 	melee_damage = 5
@@ -236,3 +289,6 @@ func _physics_process(delta) -> void:
 	else:
 		global_position += step
 		
+func _exit_tree():
+	GameInfo.save_from_player(self)
+	super._exit_tree()

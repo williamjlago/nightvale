@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://fy02fuos5itd"]
+
+[ext_resource type="Script" uid="uid://15ynmjsopel7" path="res://scripts/inventoryslot.gd" id="1_kye8j"]
+[ext_resource type="Texture2D" uid="uid://67rqxofet3es" path="res://assets/ui/inventory/inv_slot_white.png" id="2_jni8e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jni8e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kye8j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2wvv"]
+bg_color = Color(1, 1, 1, 0.23137255)
+
+[node name="InventorySlot" type="Control" unique_id=1956201908]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kye8j")
+
+[node name="slot_bg" type="TextureRect" parent="." unique_id=1298227342]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+texture = ExtResource("2_jni8e")
+
+[node name="item_texture" type="TextureRect" parent="." unique_id=1940564399]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 17.0
+offset_bottom = 17.0
+
+[node name="item_button" type="Button" parent="." unique_id=809732165]
+custom_minimum_size = Vector2(18, 18)
+layout_mode = 0
+offset_right = 18.0
+offset_bottom = 18.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jni8e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kye8j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d2wvv")

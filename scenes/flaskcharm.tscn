@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bd6tw37inns5b"]
+
+[ext_resource type="Texture2D" uid="uid://bhc72o50bxp3k" path="res://assets/items/item_flask01.png" id="1_v4l0k"]
+
+[sub_resource type="GDScript" id="GDScript_fme3f"]
+script/source = "class_name FlaskCharm extends Item
+
+var scene_path: String = \"res://scenes/flaskcharm.tscn\"
+@export var is_charm: bool = false # if true, item is a charm; if false, item is a flask
+@export var cooldown: int # cooldown on flask/charm
+var effect # define flask/charm effect here; NYI
+
+func _ready():
+	self.texture = sprite
+	add_to_group(\"items\")
+	if is_charm:
+		add_to_group(\"charms\")
+	else:
+		add_to_group(\"flasks\")
+
+func pickup():
+	if InventoryManager.player:
+		InventoryManager.add_item(self)
+		self.queue_free()
+"
+
+[node name="FlaskCharm" type="Sprite2D" unique_id=556005555]
+texture = ExtResource("1_v4l0k")
+centered = false
+script = SubResource("GDScript_fme3f")

@@ -8,13 +8,13 @@ class_name Actor extends AnimatedSprite2D
 }
 
 @export var max_health: float = 1
-@onready var health: float = max_health
-@onready var level: int = 1
-@onready var attack_power: float = 0
-@onready var accuracy: float = 0
-@onready var spell_accuracy: float = 0
-@onready var dodge: float = 0
-@onready var protection: int = 0
+var health: float
+var level: int = 1
+var attack_power: float = 0
+var accuracy: float = 0
+var spell_accuracy: float = 0
+var dodge: float = 0
+var armor: float = 0
 @export var melee_damage: float = 0
 @export var health_regen: float = 1.0
 var dead: bool = false
@@ -81,3 +81,6 @@ func _process(_delta):
 			destroy()
 		else:
 			visible = false
+
+func _exit_tree() -> void:
+	TurnManager.unregister_actor(self)

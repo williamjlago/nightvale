@@ -4,14 +4,16 @@ class_name Enemy extends Actor
 @onready var tilemap = get_node("../WorldTileLayer")
 @onready var fog: TileMapLayer = get_node(NodePath("../FogTileLayer"))
 @onready var astar: AStarGrid2D = player.astar
-@export var enemy_id: int = 0
+@export var enemy_type: int = 0
+@export var enemy_id: String
 @export var init_pos: Vector2i
 var awake: bool = false
 var last_known_player_tile: Vector2i = Vector2i.ZERO
 
 func _ready():
-	set_enemy_by_id()
+	set_enemy_by_type()
 	TurnManager.register_actor(self, false)
+	z_index = 1
 	add_to_group("enemies")
 	global_position = init_pos
 	
@@ -98,20 +100,18 @@ func chase_melee(target: Actor):
 		path_toward(self_tile, target_tile, target)
 		spend_energy("move")
 
-func set_enemy_by_id() -> void:
-	# check enemy ID and change sprite/attributes accordingly
-	match enemy_id:
+func set_enemy_by_type() -> void:
+	# check enemy type and change sprite/attributes accordingly
+	match enemy_type:
 		1:
 			name = "Skeleton Warrior"
 			max_health = 15
-			health = 15
 			melee_damage = 5
 			health_regen = 0
 			animation = &"skelwar"
 		2:
 			name = "Skeleton King"
 			max_health = 50
-			health = 50
 			melee_damage = 10
 			health_regen = 0
 			animation = &"skelking"
@@ -121,6 +121,7 @@ func set_enemy_by_id() -> void:
 			melee_damage = 7
 			health_regen = 1
 			animation = &"spider"
+	play(animation)
 	return
 	
 func go_to_last_known_player_pos():
@@ -163,8 +164,3 @@ func path_toward(self_tile: Vector2i, target_tile: Vector2i, target_actor: Actor
 	else:
 		print("Path only has ", path_tiles.size(), " tiles, cannot move")
 	return
-	
-
-func _exit_tree():
-	# Clean up registration if enemy is destroyed
-	remove_from_group("enemies")

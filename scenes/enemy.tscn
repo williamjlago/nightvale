@@ -42,7 +42,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ipns3")
 }],
-"loop": true,
+"loop": 1,
 "name": &"skelking",
 "speed": 1.5
 }, {
@@ -53,7 +53,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pij06")
 }],
-"loop": true,
+"loop": 1,
 "name": &"skelwar",
 "speed": 1.5
 }, {
@@ -64,7 +64,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_w8i8w")
 }],
-"loop": true,
+"loop": 1,
 "name": &"spider",
 "speed": 1.5
 }]
@@ -80,7 +80,7 @@ light_mode = 1
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_04mpi")
 animation = &"skelwar"
-frame_progress = 0.15557815
+frame_progress = 0.19381455
 centered = false
 offset = Vector2(0, -8)
 script = ExtResource("2_nenq2")

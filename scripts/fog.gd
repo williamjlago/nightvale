@@ -1,4 +1,3 @@
-#fog.gd
 extends TileMapLayer
 
 @export var tilemap_path := NodePath("../WorldTileLayer")

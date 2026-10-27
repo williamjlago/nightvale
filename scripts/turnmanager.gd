@@ -1,4 +1,3 @@
-# turnmanager.gd
 extends Node
 
 var tick: int = 0
@@ -56,7 +55,10 @@ func _process(_delta: float) -> void:
 			for actor in actors:
 				actor.health_regen_tick()
 				
-		for actor in actors:
+		for actor in actors.duplicate():
+			if not is_instance_valid(actor):
+				actors.erase(actor)
+				continue
 			actor.energy_tick()
 			if actor != player_actor and actor.can_act():
 				process_enemy_turn(actor)

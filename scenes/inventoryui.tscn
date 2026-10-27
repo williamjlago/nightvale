@@ -1,0 +1,344 @@
+[gd_scene format=3 uid="uid://bl627trnd4m5s"]
+
+[ext_resource type="Texture2D" uid="uid://btfhoa88cg002" path="res://assets/ui/inventory/inventory_frame.png" id="1_tit8p"]
+[ext_resource type="Texture2D" uid="uid://b7we2fv3y2erv" path="res://assets/ow/ow_fighter.png" id="2_0ltpj"]
+[ext_resource type="Texture2D" uid="uid://c8puhukd15uk5" path="res://assets/ui/inventory/inv_ui_gold_icon.png" id="2_2h4kl"]
+[ext_resource type="PackedScene" uid="uid://fy02fuos5itd" path="res://scenes/inventoryslot.tscn" id="2_4ru8d"]
+[ext_resource type="FontFile" uid="uid://carnpp8c5p5f2" path="res://assets/monogram.ttf" id="3_wdx3p"]
+[ext_resource type="PackedScene" uid="uid://bqun45mh2bc30" path="res://scenes/equipmentslot.tscn" id="5_822jb"]
+[ext_resource type="Texture2D" uid="uid://dhrk470bkfbgy" path="res://assets/ui/inventory/inv_mainhand_slot_icon.png" id="6_5f31p"]
+[ext_resource type="Texture2D" uid="uid://beqg4083xxac1" path="res://assets/ui/inventory/inv_offhand_slot_icon.png" id="7_jms4w"]
+[ext_resource type="Texture2D" uid="uid://cagx5r53s5h0q" path="res://assets/ui/inventory/inv_neck_slot_icon.png" id="8_5sg14"]
+[ext_resource type="Texture2D" uid="uid://barflpn8pm6sk" path="res://assets/ui/inventory/inv_head_slot_icon.png" id="8_my3q7"]
+[ext_resource type="Texture2D" uid="uid://bafdn2rcfeu6r" path="res://assets/ui/inventory/inv_ring_slot_icon.png" id="9_2dgfp"]
+[ext_resource type="Texture2D" uid="uid://yvgmoujg364w" path="res://assets/ui/inventory/inv_hands_slot_icon.png" id="9_jd20t"]
+[ext_resource type="Texture2D" uid="uid://c3mj25miqos2i" path="res://assets/ui/inventory/inv_chest_slot_icon.png" id="10_lv5if"]
+[ext_resource type="Texture2D" uid="uid://d1lvovj3fquh3" path="res://assets/ui/inventory/inv_feet_slot_icon.png" id="10_ssbf7"]
+[ext_resource type="Texture2D" uid="uid://7yihl1g65i4b" path="res://assets/ui/inventory/inv_legs_slot_icon.png" id="11_77gd7"]
+[ext_resource type="Texture2D" uid="uid://kb3ch8mbcxm4" path="res://assets/ui/inventory/inv_light_slot_icon.png" id="12_ykcu6"]
+[ext_resource type="Texture2D" uid="uid://djjbykkyer82v" path="res://assets/ui/inventory/inv_belt_slot_icon.png" id="13_7k1yo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_822jb"]
+atlas = ExtResource("2_0ltpj")
+region = Rect2(0, 0, 16, 24)
+
+[node name="InventoryUI" type="Control" unique_id=908950375]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="inventory_frame" type="TextureRect" parent="." unique_id=1898725004]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 0
+texture = ExtResource("1_tit8p")
+
+[node name="inventory_character" type="TextureRect" parent="." unique_id=1492929442]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 27.0
+offset_right = 86.0
+offset_bottom = 51.0
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_822jb")
+stretch_mode = 1
+
+[node name="GoldIcon" type="TextureRect" parent="." unique_id=135312816]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 194.0
+offset_right = 23.0
+offset_bottom = 210.0
+texture = ExtResource("2_2h4kl")
+stretch_mode = 2
+
+[node name="GoldLabel" type="Label" parent="." unique_id=1710714995]
+texture_filter = 1
+layout_mode = 0
+offset_left = 21.0
+offset_top = 195.0
+offset_right = 80.0
+offset_bottom = 208.0
+theme_override_colors/font_color = Color(0.9882353, 0.7137255, 0.22352941, 1)
+theme_override_fonts/font = ExtResource("3_wdx3p")
+theme_override_font_sizes/font_size = 16
+
+[node name="EquipmentSlots" type="Control" parent="." unique_id=595916164]
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 118.0
+
+[node name="MainHandSlot" parent="EquipmentSlots" unique_id=1956201908 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 46.0
+offset_top = 17.0
+offset_right = -96.0
+offset_bottom = -83.0
+slot_type = "mainhand"
+slot_texture = ExtResource("6_5f31p")
+
+[node name="OffHandSlot" parent="EquipmentSlots" unique_id=324170723 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 106.0
+offset_top = 17.0
+offset_right = -36.0
+offset_bottom = -83.0
+slot_type = "offhand"
+slot_texture = ExtResource("7_jms4w")
+
+[node name="HeadSlot" parent="EquipmentSlots" unique_id=1535030614 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 66.0
+offset_top = 17.0
+offset_right = -76.0
+offset_bottom = -83.0
+slot_type = "head"
+slot_texture = ExtResource("8_my3q7")
+
+[node name="NeckSlot" parent="EquipmentSlots" unique_id=1515312606 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 86.0
+offset_top = 17.0
+offset_right = -56.0
+offset_bottom = -83.0
+slot_type = "neck"
+slot_texture = ExtResource("8_5sg14")
+
+[node name="ChestSlot" parent="EquipmentSlots" unique_id=929365852 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 46.0
+offset_top = 37.0
+offset_right = -96.0
+offset_bottom = -63.0
+slot_type = "chest"
+slot_texture = ExtResource("10_lv5if")
+
+[node name="LegsSlot" parent="EquipmentSlots" unique_id=1811847180 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 46.0
+offset_top = 57.0
+offset_right = -96.0
+offset_bottom = -43.0
+slot_type = "legs"
+slot_texture = ExtResource("11_77gd7")
+
+[node name="LightSlot" parent="EquipmentSlots" unique_id=510694338 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 46.0
+offset_top = 77.0
+offset_right = -96.0
+offset_bottom = -23.0
+slot_type = "light"
+slot_texture = ExtResource("12_ykcu6")
+
+[node name="BeltSlot" parent="EquipmentSlots" unique_id=1520377046 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 66.0
+offset_top = 77.0
+offset_right = -76.0
+offset_bottom = -23.0
+slot_type = "belt"
+slot_texture = ExtResource("13_7k1yo")
+
+[node name="HandsSlot" parent="EquipmentSlots" unique_id=1217121749 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 106.0
+offset_top = 37.0
+offset_right = -36.0
+offset_bottom = -63.0
+slot_type = "hands"
+slot_texture = ExtResource("9_jd20t")
+
+[node name="FeetSlot" parent="EquipmentSlots" unique_id=1007257062 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 106.0
+offset_top = 57.0
+offset_right = -36.0
+offset_bottom = -43.0
+slot_type = "feet"
+slot_texture = ExtResource("10_ssbf7")
+
+[node name="RingSlot1" parent="EquipmentSlots" unique_id=974928436 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 86.0
+offset_top = 77.0
+offset_right = -56.0
+offset_bottom = -23.0
+slot_type = "ring1"
+slot_texture = ExtResource("9_2dgfp")
+
+[node name="RingSlot2" parent="EquipmentSlots" unique_id=1474122306 instance=ExtResource("5_822jb")]
+custom_minimum_size = Vector2(18, 18)
+custom_maximum_size = Vector2(18, 18)
+layout_mode = 1
+offset_left = 106.0
+offset_top = 77.0
+offset_right = -36.0
+offset_bottom = -23.0
+slot_type = "ring2"
+slot_texture = ExtResource("9_2dgfp")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=570271252]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 120.0
+offset_right = 160.0
+offset_bottom = 195.0
+columns = 8
+
+[node name="InventorySlot1" parent="GridContainer" unique_id=1631990582 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot2" parent="GridContainer" unique_id=1418119355 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot3" parent="GridContainer" unique_id=605818390 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot4" parent="GridContainer" unique_id=942409611 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot5" parent="GridContainer" unique_id=1854305884 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot6" parent="GridContainer" unique_id=1357349648 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot7" parent="GridContainer" unique_id=1182723422 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot8" parent="GridContainer" unique_id=915066571 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot9" parent="GridContainer" unique_id=324951394 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot10" parent="GridContainer" unique_id=918443425 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot11" parent="GridContainer" unique_id=185118078 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot12" parent="GridContainer" unique_id=594836563 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot13" parent="GridContainer" unique_id=1392051965 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot14" parent="GridContainer" unique_id=27150409 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot15" parent="GridContainer" unique_id=942651081 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot16" parent="GridContainer" unique_id=632558125 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot17" parent="GridContainer" unique_id=1017171179 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot18" parent="GridContainer" unique_id=1329439020 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot19" parent="GridContainer" unique_id=2061726388 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot20" parent="GridContainer" unique_id=473243061 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot21" parent="GridContainer" unique_id=2000847210 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot22" parent="GridContainer" unique_id=1654306030 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot23" parent="GridContainer" unique_id=1289421970 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot24" parent="GridContainer" unique_id=1468211949 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot25" parent="GridContainer" unique_id=793874975 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot26" parent="GridContainer" unique_id=3998500 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot27" parent="GridContainer" unique_id=1677306924 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot28" parent="GridContainer" unique_id=2125806234 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot29" parent="GridContainer" unique_id=424798461 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot30" parent="GridContainer" unique_id=626831151 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot31" parent="GridContainer" unique_id=1891468273 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="InventorySlot32" parent="GridContainer" unique_id=1294870163 instance=ExtResource("2_4ru8d")]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+
+[node name="cursor_item" type="TextureRect" parent="." unique_id=27403233]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 17.0
+offset_bottom = 17.0

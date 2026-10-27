@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cap5jgh5lod7j" path="res://assets/ui/ow_health_bg.png" id="5_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://joijm2rocp8a" path="res://assets/ui/ow_health_fill_green.png" id="6_3v2ag"]
 [ext_resource type="Script" uid="uid://dtijnt4aorpui" path="res://scripts/ow_healthbar.gd" id="7_jej6c"]
+[ext_resource type="PackedScene" uid="uid://cw1b8o0d7dccu" path="res://scenes/characterhud.tscn" id="8_y4r1p"]
+[ext_resource type="Script" uid="uid://cmbkp54nv7war" path="res://scripts/characterhud.gd" id="9_d2wvv"]
+[ext_resource type="PackedScene" uid="uid://bl627trnd4m5s" path="res://scenes/inventoryui.tscn" id="10_3v2ag"]
+[ext_resource type="Script" uid="uid://dng6tu3p2h8tl" path="res://scripts/inventory.gd" id="11_d2wvv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_04mpi"]
 light_mode = 1
@@ -28,7 +32,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ivaed")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 1.5
 }]
@@ -80,3 +84,17 @@ fill_mode = 3
 texture_under = ExtResource("5_d2wvv")
 texture_progress = ExtResource("6_3v2ag")
 script = ExtResource("7_jej6c")
+
+[node name="UICanvasLayer" type="CanvasLayer" parent="." unique_id=440971373]
+
+[node name="CharacterHUD" parent="UICanvasLayer" unique_id=946792385 instance=ExtResource("8_y4r1p")]
+scale = Vector2(2, 2)
+script = ExtResource("9_d2wvv")
+
+[node name="InventoryUI" parent="UICanvasLayer" unique_id=1059297365 instance=ExtResource("10_3v2ag")]
+offset_left = 407.0
+offset_top = 116.0
+offset_right = 407.0
+offset_bottom = 116.0
+scale = Vector2(2, 2)
+script = ExtResource("11_d2wvv")
