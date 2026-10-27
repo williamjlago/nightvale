@@ -1,4 +1,4 @@
-# neverwood
+# Nightvale
 Work-in-progress 2D roguelike developed in the Godot engine.
 
 Currently implemented:
