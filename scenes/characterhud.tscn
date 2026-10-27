@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cw1b8o0d7dccu"]
+
+[ext_resource type="Texture2D" uid="uid://ddvqecpfvucbd" path="res://assets/ui/ui_bg.png" id="1_qwyv1"]
+[ext_resource type="Texture2D" uid="uid://b1ddcos1ug17k" path="res://assets/ui/ui_portraits.png" id="2_y2j11"]
+[ext_resource type="Texture2D" uid="uid://cygdxfxgsdt0" path="res://assets/ui/ui_hp_border.png" id="3_m0vw2"]
+[ext_resource type="Texture2D" uid="uid://citvmxyjp0n8k" path="res://assets/ui/ui_sp_border.png" id="4_72436"]
+[ext_resource type="Texture2D" uid="uid://b5axxq1mqsbud" path="res://assets/ui/ui_xp_border.PNG" id="5_ro8yl"]
+[ext_resource type="Texture2D" uid="uid://clkwve3st847y" path="res://assets/ui/ui_hp_bar.png" id="6_gks1h"]
+[ext_resource type="Texture2D" uid="uid://bflvpm374lu41" path="res://assets/ui/ui_sp_bar.png" id="7_dmmmq"]
+[ext_resource type="Texture2D" uid="uid://41cmea6o0sui" path="res://assets/ui/ui_xp_bar.PNG" id="8_ct2nr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hsd6q"]
+atlas = ExtResource("2_y2j11")
+region = Rect2(0, 0, 36, 36)
+
+[node name="CharacterHUD" type="Node2D" unique_id=946792385]
+texture_filter = 1
+
+[node name="ui_bg" type="Sprite2D" parent="." unique_id=1561024004]
+texture_filter = 1
+position = Vector2(94, 24)
+texture = ExtResource("1_qwyv1")
+
+[node name="portrait" type="Sprite2D" parent="." unique_id=494492850]
+texture_filter = 1
+position = Vector2(20, 20)
+texture = SubResource("AtlasTexture_hsd6q")
+
+[node name="hp_border" type="Sprite2D" parent="." unique_id=821537221]
+texture_filter = 1
+position = Vector2(113, 18)
+texture = ExtResource("3_m0vw2")
+
+[node name="sp_border" type="Sprite2D" parent="." unique_id=999596305]
+texture_filter = 1
+position = Vector2(113, 32)
+texture = ExtResource("4_72436")
+
+[node name="xp_border" type="Sprite2D" parent="." unique_id=1641166742]
+texture_filter = 1
+position = Vector2(94, 43)
+texture = ExtResource("5_ro8yl")
+
+[node name="hp_bar" type="Sprite2D" parent="." unique_id=1876656879]
+texture_filter = 1
+position = Vector2(42, 18)
+texture = ExtResource("6_gks1h")
+centered = false
+offset = Vector2(0, -4)
+
+[node name="sp_bar" type="Sprite2D" parent="." unique_id=545571079]
+texture_filter = 1
+position = Vector2(113, 32)
+texture = ExtResource("7_dmmmq")
+
+[node name="xp_bar" type="Sprite2D" parent="." unique_id=981829602]
+texture_filter = 1
+position = Vector2(94, 43)
+texture = ExtResource("8_ct2nr")
